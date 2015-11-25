@@ -179,4 +179,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
     }
 
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        //pass
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container);
+        fragment.onActivityResult(requestCode, resultCode, intent);
+    }
+
 }

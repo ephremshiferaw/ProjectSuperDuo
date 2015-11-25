@@ -144,6 +144,10 @@ public class BookService extends IntentService {
 
         }
 
+
+        if (bookJsonString == null) {
+            return;
+        }
         final String ITEMS = "items";
 
         final String VOLUME_INFO = "volumeInfo";
@@ -196,7 +200,7 @@ public class BookService extends IntentService {
                 writeBackCategories(ean,bookInfo.getJSONArray(CATEGORIES) );
             }
 
-        } catch (JSONException e) {
+        } catch (Exception e) {
             Log.e(LOG_TAG, "Error ", e);
         }
     }
