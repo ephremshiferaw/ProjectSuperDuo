@@ -2,9 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="barqsoft.footballscores" >
 
+    <uses-sdk
+        android:minSdkVersion="14"
+        />
     <uses-permission
         android:name="android.permission.INTERNET"
-        android:maxSdkVersion="22" />
+        android:maxSdkVersion="22"
+        />
 
     <application
         android:allowBackup="true"
@@ -21,6 +25,20 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ExampleAppWidgetConfigure">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
+        <receiver android:name=".MyWidgetProvider">
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"></action>
+
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/example_appwidget_info" />
+        </receiver>
         <provider
             android:name=".ScoresProvider"
             android:authorities="barqsoft.footballscores" />
