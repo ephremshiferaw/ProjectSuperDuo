@@ -2,7 +2,9 @@ package barqsoft.footballscores;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
+import android.content.pm.PathPermission;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
@@ -36,6 +38,13 @@ public class ScoresProvider extends ContentProvider
         matcher.addURI(authority, "id" , MATCHES_WITH_ID);
         matcher.addURI(authority, "date" , MATCHES_WITH_DATE);
         return matcher;
+    }
+
+
+    Context mContext;
+    public void SetContext(Context context) {
+
+        mContext = context;
     }
 
     private int match_uri(Uri uri)
@@ -95,6 +104,10 @@ public class ScoresProvider extends ContentProvider
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder)
     {
+
+
+        if(mOpenHelper==null)
+            mOpenHelper = new ScoresDBHelper(mContext);
         Cursor retCursor;
         //Log.v(FetchScoreTask.LOG_TAG,uri.getPathSegments().toString());
         int match = match_uri(uri);
@@ -120,6 +133,7 @@ public class ScoresProvider extends ContentProvider
                     projection,SCORES_BY_LEAGUE,selectionArgs,null,null,sortOrder); break;
             default: throw new UnsupportedOperationException("Unknown Uri" + uri);
         }
+
         retCursor.setNotificationUri(getContext().getContentResolver(),uri);
         return retCursor;
     }
@@ -166,5 +180,24 @@ public class ScoresProvider extends ContentProvider
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         return 0;
+    }
+
+
+
+    public Cursor getScores()
+    {
+
+
+        if(mOpenHelper==null)
+            mOpenHelper = new ScoresDBHelper(mContext);
+        Cursor retCursor;
+        retCursor = mOpenHelper.getReadableDatabase().query(
+                DatabaseContract.SCORES_TABLE,
+                null,null,null,null,null, DatabaseContract.scores_table.DATE_COL + " Desc ");
+
+
+
+
+        return retCursor;
     }
 }
