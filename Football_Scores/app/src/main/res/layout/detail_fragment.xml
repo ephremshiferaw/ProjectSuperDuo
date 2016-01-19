@@ -21,6 +21,7 @@
             android:gravity="center"
             android:layout_weight="1"
             android:text="@string/test_text"
+
             android:textSize="@dimen/League"
             android:textColor="@android:color/black"
             android:id="@+id/matchday_textview"/>
@@ -30,15 +31,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
         <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/share_text"
-        android:id="@+id/share_button"
-        android:drawableLeft="@android:drawable/ic_menu_share"
-        android:paddingLeft="120dp"
-        android:paddingRight="120dp"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/share_text"
+            android:id="@+id/share_button"
+            android:drawableStart="@android:drawable/ic_menu_share"
+            android:contentDescription="@string/contentDescription_share"
+            android:paddingLeft="120dp"
+            android:paddingRight="120dp"/>
     </FrameLayout>
 
 </LinearLayout>

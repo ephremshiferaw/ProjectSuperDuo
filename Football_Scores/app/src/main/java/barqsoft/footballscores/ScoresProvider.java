@@ -51,22 +51,22 @@ public class ScoresProvider extends ContentProvider
     {
         String link = uri.toString();
         {
-           if(link.contentEquals(DatabaseContract.BASE_CONTENT_URI.toString()))
-           {
-               return MATCHES;
-           }
-           else if(link.contentEquals(DatabaseContract.scores_table.buildScoreWithDate().toString()))
-           {
-               return MATCHES_WITH_DATE;
-           }
-           else if(link.contentEquals(DatabaseContract.scores_table.buildScoreWithId().toString()))
-           {
-               return MATCHES_WITH_ID;
-           }
-           else if(link.contentEquals(DatabaseContract.scores_table.buildScoreWithLeague().toString()))
-           {
-               return MATCHES_WITH_LEAGUE;
-           }
+            if(link.contentEquals(DatabaseContract.BASE_CONTENT_URI.toString()))
+            {
+                return MATCHES;
+            }
+            else if(link.contentEquals(DatabaseContract.scores_table.buildScoreWithDate().toString()))
+            {
+                return MATCHES_WITH_DATE;
+            }
+            else if(link.contentEquals(DatabaseContract.scores_table.buildScoreWithId().toString()))
+            {
+                return MATCHES_WITH_ID;
+            }
+            else if(link.contentEquals(DatabaseContract.scores_table.buildScoreWithLeague().toString()))
+            {
+                return MATCHES_WITH_LEAGUE;
+            }
         }
         return -1;
     }
@@ -120,11 +120,11 @@ public class ScoresProvider extends ContentProvider
                     DatabaseContract.SCORES_TABLE,
                     projection,null,null,null,null,sortOrder); break;
             case MATCHES_WITH_DATE:
-                    //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[1]);
-                    //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[2]);
-                    retCursor = mOpenHelper.getReadableDatabase().query(
-                    DatabaseContract.SCORES_TABLE,
-                    projection,SCORES_BY_DATE,selectionArgs,null,null,sortOrder); break;
+                //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[1]);
+                //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[2]);
+                retCursor = mOpenHelper.getReadableDatabase().query(
+                        DatabaseContract.SCORES_TABLE,
+                        projection,SCORES_BY_DATE,selectionArgs,null,null,sortOrder); break;
             case MATCHES_WITH_ID: retCursor = mOpenHelper.getReadableDatabase().query(
                     DatabaseContract.SCORES_TABLE,
                     projection,SCORES_BY_ID,selectionArgs,null,null,sortOrder); break;
